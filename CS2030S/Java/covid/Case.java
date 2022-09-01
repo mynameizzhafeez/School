@@ -1,0 +1,6 @@
+class Case {
+	
+	int id;
+	
+
+}

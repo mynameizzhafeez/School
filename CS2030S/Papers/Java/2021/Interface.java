@@ -1,0 +1,1 @@
+interface Interface {void f();}

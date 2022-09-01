@@ -1,0 +1,418 @@
+<div id="container">
+    <div id="outer">
+        <div id="inner">
+            <div id="content_full">
+                <div class="content-header">
+                    <h3>Task Content</h3>
+                </div>
+                <div class="panel">
+                    <div class="task-content">
+                        <h3>CS2030 Practical Assessment #2</h3>
+                        <h4>Problem Description</h4>
+                        <p>Before you proceed with the questions, please adhere to the following instructions:</p>
+                        <ul>
+                            <li>You need only design a single <tt>Parser</tt> class to be saved as <tt>Parser.java</tt>.
+                            </li>
+                            <li>In each level, <tt>Parser.java</tt> will be saved as <tt>Parser1.java</tt>,
+                                <tt>Parser2.java</tt>, etc. Only files numbered with a level will be uploaded to
+                                CodeCrunch.</li>
+                            <li>There <strong>should not</strong> be a <tt>main</tt> method in the <tt>Parser</tt>
+                                class. Any <tt>main</tt> method found will render the class uncompilable.</li>
+                            <li>A sample <tt>jshell</tt> session is provided for each level, as well as a <tt>Test</tt>
+                                driver class. Instructions for using the driver class will be given.</li>
+                            <li>You are to adhere strictly to each method signature. However, you may devise your own
+                                return types.
+                                <!--
+<li>Each test shall be a complete method chain so as to avoid the issue of immutability. -->
+                            </li>
+                        </ul>
+                        <p>This task is divided into several levels. Read through all the levels to see how the
+                            different levels are related. <strong>You need to complete ALL levels</strong>.</p>
+                        <p>Just remember to:</p>
+                        <ul>
+                            <li>check for output format correctness using the <tt>diff</tt> utility (see specific level
+                                for usage details). Note that only one test case is provided for this;</li>
+                            <li>save a copy of all source files into the appropriate level files (see specific level for
+                                usage details).</li>
+                        </ul>
+                        <table style="width: 800px;" border="1" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h4>Level 1</h4>
+                                        <p>Construct the <tt>Parser</tt> class and the method <tt>parse(List
+                                                lines)</tt>, so as to output each line in <tt>List lines</tt>. For this
+                                            and subsequent levels, you may assume that there is at least one line in
+                                            <tt>List lines</tt>.</p>
+                                        <p>A sample <tt>jshell</tt> session is shown below:</p>
+                                        <pre>jshell&gt; /open Parser.java
+
+jshell&gt; List lines = Arrays.asList(new String[]{"one", "two three"})
+lines ==&gt; [one, two three]
+
+jshell&gt; Parser.parse(lines)
+$.. ==&gt; one
+two three
+
+jshell&gt; Parser.parse(lines)
+$.. ==&gt; one
+two three
+</pre>
+                                        <p>From now on, your program will be tested using complete method chains
+                                            starting with <tt>Parser.parse(...)</tt>, and <tt>parse</tt> will not be
+                                            called again in the remaining part of the chain.</p>
+                                        <p>Click <a href="task_view.php?tid=4492" target="_blank"
+                                                rel="noopener">here</a> to submit to CodeCrunch.</p>
+                                        <p>Check the format correctness of the output by typing the following Unix
+                                            commands</p>
+                                        <pre>$ javac Test1.java
+$ java Test | diff - test1.out
+</pre>
+                                        <p>Make a copy of your Java programs by typing the Unix command</p>
+                                        <pre>$ cp Parser.java Parser1.java
+</pre>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="width: 800px;" border="1" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h4>Level 2</h4>
+                                        <p>Define the methods <tt>linecount()</tt> and <tt>wordcount()</tt> so as to
+                                            output the number of lines and words (consecutively sequence of non-space
+                                            characters) respectively.</p>
+                                        <p>A sample <tt>jshell</tt> session is shown below:</p>
+                                        <pre>jshell&gt; /open Parser.java
+
+jshell&gt; List lines = Arrays.asList(new String[]{"one", "two three", ""})
+lines ==&gt; [one, two three, ]
+
+jshell&gt; Parser.parse(lines).linecount()
+$.. ==&gt; 3
+
+jshell&gt; Parser.parse(lines).wordcount()
+$.. ==&gt; 3
+
+jshell&gt; Parser.parse(lines).linecount().wordcount()
+$.. ==&gt; 1
+
+jshell&gt; Parser.parse(lines).wordcount().linecount()
+$.. ==&gt; 1
+</pre>
+                                        <p>In the last method chain above, the final <tt>linecount()</tt> counts the
+                                            number of lines of the output of <tt>Parser.parse(lines).wordcount()</tt>,
+                                            which is <tt>1</tt>.</p>
+                                        <p><em>Hint: You may want to consider using the <tt>split</tt> method of the
+                                                <tt>String</tt> class:</em></p>
+                                        <pre>jshell&gt; "one#two#three".split("#")
+$.. ==&gt; String[3] { "one", "two", "three" }
+
+jshell&gt; "one#two##three".split("#")
+$.. ==&gt; String[4] { "one", "two", "", "three" }
+</pre>
+                                        <p>Click <a href="task_view.php?tid=4493" target="_blank"
+                                                rel="noopener">here</a> to submit to CodeCrunch.</p>
+                                        <p>Check the format correctness of the output by typing the following Unix
+                                            commands</p>
+                                        <pre>$ javac Test2.java
+$ java Test | diff - test2.out
+</pre>
+                                        <p>Make a copy of your Java program by typing the Unix command</p>
+                                        <pre>$ cp Parser.java Parser2.java
+</pre>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="width: 800px;" border="1" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h4>Level 3</h4>
+                                        <p>Define a method <tt>grab(String str)</tt> that takes a string <tt>str</tt>
+                                            and grabs only the strings with occurrences of <tt>str</tt>.</p>
+                                        <p>In addition, write a method <tt>echo()</tt> that simply echoes <strong>all
+                                                words separated by a single space on a single line</strong>. Note that
+                                            there is no trailing space at the end of each line.</p>
+                                        <p>A sample <tt>jshell</tt> session is shown below:</p>
+                                        <pre>jshell&gt; /open Parser.java
+
+jshell&gt; List lines = Arrays.asList(new String[]{"one", "two   three"})
+lines ==&gt; [one, two   three]
+
+jshell&gt; Parser.parse(lines).grab("e")
+$.. ==&gt; one
+two  three
+
+jshell&gt; Parser.parse(lines).grab("ee")
+$.. ==&gt; two   three
+
+jshell&gt; Parser.parse(lines).grab("e").wordcount()
+$.. ==&gt; 3
+
+jshell&gt; Parser.parse(lines).grab("ee").wordcount()
+$.. ==&gt; 2
+
+jshell&gt; Parser.parse(lines).grab("z")
+$.. ==&gt;
+
+jshell&gt; Parser.parse(lines).grab("z").linecount()
+$.. ==&gt; 0
+
+jshell&gt; Parser.parse(lines).grab("z").wordcount()
+$.. ==&gt; 0
+
+jshell&gt; Parser.parse(lines).grab("z").linecount().grab("0").linecount()
+$.. ==&gt; 1
+
+jshell&gt; Parser.parse(lines).echo()
+$.. ==&gt; one two three
+
+jshell&gt; Parser.parse(lines).echo().grab("e t")
+$.. ==&gt; one two three
+
+jshell&gt; Parser.parse(lines).echo().grab("et")
+$.. ==&gt;
+</pre>
+                                        <p>Note that <tt>Parse.parse(lines).grab("z")</tt> above does not output
+                                            anything; hence the number of lines and number of words is zero.</p>
+                                        <p>Click <a href="task_view.php?tid=4494" target="_blank"
+                                                rel="noopener">here</a> to submit to CodeCrunch.</p>
+                                        <p>Check the format correctness of the output by typing the following Unix
+                                            commands</p>
+                                        <pre>$ javac Test3.java
+$ java Test | diff - test3.out
+</pre>
+                                        <p>Make a copy of your Java program by typing the Unix command</p>
+                                        <pre>$ cp Parser.java Parser3.java
+</pre>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="width: 800px;" border="1" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h4>Level 4</h4>
+                                        <p>Define a method <tt>chop(int start, int end)</tt> that chops and retains each
+                                            line from <tt>start</tt> to <tt>end</tt> inclusive of both. You may assume
+                                            that <tt>0&nbsp;&le;&nbsp;start&nbsp;&le;&nbsp;end</tt>.</p>
+                                        <p>As an example, invoking <tt>chop(1, 4)</tt> on <tt>"aebecedef"</tt> will
+                                            result in <tt>"aebe"</tt>. Spaces are also retained if they are within the
+                                            bounds. Note also that the starting position is <tt>1</tt> (not <tt>0</tt>).
+                                        </p>
+                                        <p>A sample <tt>jshell</tt> session is shown below:</p>
+                                        <pre>jshell&gt; /open Parser.java
+
+jshell&gt; List lines = Arrays.asList(new String[]{"one", "two three"})
+lines ==&gt; [one, two three]
+
+jshell&gt; Parser.parse(lines).chop(2,2)
+$.. ==&gt; n
+w
+
+jshell&gt; Parser.parse(lines).chop(2,5)
+$.. ==&gt; ne
+wo t
+
+jshell&gt; Parser.parse(lines).grab("e").chop(0,10)
+$.. ==&gt; one
+two three
+
+jshell&gt; Parser.parse(lines).grab("e").echo().chop(0,10)
+$.. ==&gt; one two th
+
+jshell&gt; Parser.parse(lines).chop(30,200)
+$.. ==&gt;
+
+jshell&gt; Parser.parse(lines).chop(30,200).linecount()
+$.. ==&gt; 2
+
+jshell&gt; Parser.parse(lines).chop(30,200).wordcount()
+$.. ==&gt; 0
+</pre>
+                                        <p>Click <a href="task_view.php?tid=4495" target="_blank"
+                                                rel="noopener">here</a> to submit to CodeCrunch.</p>
+                                        <p>Check the format correctness of the output by typing the following Unix
+                                            commands</p>
+                                        <pre>$ javac Test4.java
+$ java Test | diff - test4.out
+</pre>
+                                        <p>Make a copy of your Java program by typing the Unix command</p>
+                                        <pre>$ cp Parser.java Parser4.java
+</pre>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="width: 800px;" border="1" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h4>Level 5</h4>
+                                        <p>Define a method <tt>shuffle</tt> that shuffles each word in a line such that
+                                            it obeys the following rules:</p>
+                                        <ul>
+                                            <li>The first occurring (and last occuring) letters (a to z; A to Z) are
+                                                retained;</li>
+                                            <li>All characters between the second letter to the second-last letter are
+                                                left shifted one position with rotation.</li>
+                                        </ul>
+                                        <p>In this way, the string <tt>three</tt> becomes <tt>trehe</tt> as shown in the
+                                            following:</p>
+                                        <pre>t  h &lt;- r &lt;- e  e
+   v         ^
+   |         |
+   +----&gt;----+
+</pre>
+                                        <p>Here are some further examples:</p>
+                                        <ul>
+                                            <li>the string <tt>aren't</tt> becomes <tt>aenr't</tt> (left shift with
+                                                rotation on <tt>"ren"</tt>)</li>
+                                            <li>the string <tt>you'll</tt> becomes <tt>yu'lol</tt> (left shift with
+                                                rotation on <tt>"ou'l"</tt>)</li>
+                                            <li>the string <tt>T'was</tt> becomes <tt>T'aws</tt> (left shift with
+                                                rotation on <tt>"wa"</tt>)</li>
+                                        </ul>
+                                        <p>The line <tt>"two three"</tt> consisting of two words becomes <tt>"two
+                                                trehe"</tt> as shuffling is performed on the two words separately.</p>
+                                        <p>A sample <tt>jshell</tt> session is shown below:</p>
+                                        <pre>jshell&gt; /open Parser.java
+
+jshell&gt; List lines = Arrays.asList(new String[]{"one", "two three"})
+lines ==&gt; [one, two three]
+
+jshell&gt; Parser.parse(lines).shuffle()
+$.. ==&gt; one
+two trehe
+</pre>
+                                        <p>Define a <tt>Test</tt> class (say, in <tt>Test5.java</tt>) with a
+                                            <tt>main</tt> method to read the following:</p>
+                                        <pre>According   to  a  research  at  Cambridge  University,  it  doesn't  matter  in
+what order the letters in a word are, the only important thing is that the first
+and last letter be at the right place. The rest can be a total mess and you  can
+still read it without problem.      This is because the human mind does not read
+every     letter     by     itself     but     the     word    as    a    whole.
+</pre>
+                                        <p>The output from shuffling is as follows:</p>
+                                        <pre>Acordincg to a rsearceh at Cmbridgae Uiversitny, it desno't mttear in
+waht oderr the ltteres in a wrod are, the olny iportanmt tinhg is taht the frsit
+and lsat ltteer be at the rghit pacle. The rset can be a ttaol mses and you can
+siltl raed it wthouit poblerm. Tihs is bcausee the hmaun mnid deos not raed
+eervy ltteer by iseltf but the wrod as a wolhe.
+</pre>
+                                        <p>Click <a href="task_view.php?tid=4496" target="_blank"
+                                                rel="noopener">here</a> to submit to CodeCrunch.</p>
+                                        <p>Check the format correctness of the output by typing the following Unix
+                                            commands</p>
+                                        <pre>$ javac Test5.java
+$ java Test &lt; test5.in | diff - test5.out
+</pre>
+                                        <p>Make a copy of your Java program by typing the Unix command</p>
+                                        <pre>$ cp Parser.java Parser5.java
+</pre>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="width: 800px;" border="1" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h4>Level 6</h4>
+                                        <p>Define an overloaded method <tt>chop</tt> that takes in a <tt>String</tt>
+                                            followed by a sequence of positions of type <tt>int</tt>. For example,
+                                            invoking <tt>chop("e", 1, 2, 4)</tt> will chop each line delimited by
+                                            <tt>"e"</tt> and retain only the first, second and fourth portions. All
+                                            portions retained (if present) are then output separated by the same
+                                            delimiter. As an example, invoking <tt>chop("e", 1, 2, 4)</tt> on
+                                            <tt>"aebecedef"</tt> will result in <tt>"aebed"</tt>. You may assume that
+                                            there is at least one position, with all positions greater than zero, but
+                                            not necessarily in order.</p>
+                                        <p>As a further example on this version of <tt>chop</tt>, below shows the string
+                                            <tt>"two three"</tt> divided into parts enclosed within <tt>[..]</tt>. There
+                                            are altogether three parts</p>
+                                        <pre>[two thr]e[]e[]
+</pre>
+                                        with the second and third parts being empty strings. Furthermore, there is no
+                                        fourth part. So applying <tt>chop("e", 2, 3)</tt> on <tt>"two three"</tt>, will
+                                        output "e" (since the parts are empty), while applying <tt>chop("e", 2, 4)</tt>
+                                        outputs an empty string as only the second part (empty string) is output, and
+                                        there is no fourth part.
+                                        <p>For the case where the delimiter is not found in the string, the entire
+                                            string is output.</p>
+                                        <p>A sample <tt>jshell</tt> session is shown below:</p>
+                                        <pre>jshell&gt; /open Parser.java
+
+jshell&gt; List lines = Arrays.asList(new String[]{"one", "two three"})
+lines ==&gt; [one, two three]
+
+jshell&gt; Parser.parse(lines).chop("e", 1)
+$.. ==&gt; on
+two thr
+
+jshell&gt; Parser.parse(lines).chop("e", 1, 2)
+$.. ==&gt; one
+two thre
+
+jshell&gt; Parser.parse(lines).chop("e", 1, 2, 3)
+$.. ==&gt; one
+two three
+
+jshell&gt; Parser.parse(lines).chop("e", 1, 2, 3, 4)
+$.. ==&gt; one
+two three
+
+jshell&gt; Parser.parse(lines).chop("e", 2, 3)
+$.. ==&gt;
+e
+
+jshell&gt; Parser.parse(lines).chop("e", 2, 4)
+$.. ==&gt;
+
+
+jshell&gt; Parser.parse(lines).chop("e", 2, 1, 3)
+$.. ==&gt; one
+two three
+
+jshell&gt; Parser.parse(lines).chop("on", 1)
+$.. ==&gt;
+two three
+
+jshell&gt; Parser.parse(lines).chop("on", 2)
+$.. ==&gt; e
+two three
+
+jshell&gt; Parser.parse(lines).chop("hr", 2)
+$.. ==&gt; one
+ee
+
+jshell&gt; Parser.parse(lines).shuffle().chop("eh", 1)
+$.. ==&gt; one
+two tr
+</pre>
+                                        <p>Click <a href="task_view.php?tid=4497" target="_blank"
+                                                rel="noopener">here</a> to submit to CodeCrunch.</p>
+                                        <p>Check the format correctness of the output by typing the following Unix
+                                            commands</p>
+                                        <pre>$ javac Test6.java
+$ java Test | diff - test6.out
+</pre>
+                                        <p>Make a copy of your Java program by typing the Unix command</p>
+                                        <pre>$ cp Parser.java Parser6.java
+</pre>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END NUS-Footer -->
+<p>&nbsp;</p>

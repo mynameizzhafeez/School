@@ -1,0 +1,75 @@
+<h3>Your Own Finite Integer Stream</h3>
+<h4>Problem Description</h4>
+<p>To understand declarative programming using streams, the best way is to come up with your own stream operations. In this exercise, you will develop a finite <tt>int</tt> stream, much like how Java's <tt>IntStream</tt> works, accept that it is finite, and eager evaluated.</p>
+<h4>The Task</h4>
+<p>You are to design your own <tt>MyIntStream</tt> <strong>interface</strong> with the following requirements below. Note that you are <strong>not allowed</strong> to import anything from <tt>java.util.stream</tt></p>
+<ul>
+<li>Create the package <tt>cs2030.mystream</tt> for the <tt>MyIntStream</tt> interface and its implementation class </li>
+<li>Use a client class <tt>Main</tt> that imports <tt>cs2030.mystream</tt> </li>
+<li>Use a <tt>List</tt> to represent the stream elements </li>
+<li>You may want to consider writing an appropriate <tt>toString()</tt> method to keep track of the stream elements </li>
+<li>Start the stream pipeline via the following data sources:  
+<ul>
+<li><tt>MyIntStream.of(int... values)</tt> </li>
+<li><tt>MyIntStream.range(int start, int end)</tt> </li>
+<li><tt>MyIntStream.rangeClosed(int start, int end)</tt> </li>
+</ul>
+You need to prevent constructs like: <tt>MyIntStream.of(1,2,3).range(1,3)</tt> </li>
+<li>Every stream operation generates a new stream of elements </li>
+<li>Since the stream elements are stored in a list and eagerly evaluated through each stream operation, the stream can be consumed multiple times </li>
+<li>Implement the following <strong>terminal</strong> operations:  
+<ul>
+<li><tt>count()</tt> and <tt>sum()</tt>, each returning an <tt>int</tt> value.  In particular, <tt>0</tt> is returned when the stream is empty </li>
+<li><tt>average()</tt> that returns an <tt>OptionalDouble</tt> object. In the case of <tt>IntStream</tt>, the following statement
+<pre>System.out.println(IntStream.range(1,1).average());
+System.out.println(IntStream.range(1,2).average());
+</pre>
+outputs <tt>OptionalDouble.empty</tt> and <tt>OptionalDouble[1.0]</tt> respectively </li>
+<li><tt>max</tt> and <tt>min</tt>, each returning an <tt>OptionalInt</tt> object </li>
+<li><tt>forEach(IntConsumer action)</tt> that takes as argument an action and performs the action on each stream element </li>
+</ul>
+Note that you can use the <tt>getAsDouble()</tt> and <tt>getAsInt()</tt> to obtain the respective <tt>double</tt> and <tt>int</tt> values from an <tt>OptionalDouble</tt> and <tt>OptionalInt</tt> object respectively </li>
+<li>Implement the following <strong>intermediate</strong> operations:  
+<ul>
+<li><tt>limit(int maxSize)</tt> that returns a <tt>MyIntStream</tt> stream of elements truncated to be no longer than <tt>maxSize</tt> in length </li>
+<li><tt>distinct()</tt> that returns a <tt>MyIntStream</tt> stream of distinct elements. <em>Hint: use a</em> <tt>Set</tt> </li>
+<li><tt>filter(IntPredicate predicate)</tt> that takes as argument a predicate function and returns a <tt>MyIntStream</tt> stream of elements that match the given predicate </li>
+<li><tt>map(IntUnaryOperator mapper)</tt> that takes in a mapper function and returns a <tt>MyIntStream</tt> stream of elements consisting of the results of applying the given function to the stream elements </li>
+</ul>
+</li>
+<li>Towards the end, implement the following two variants of the verb|reduce| terminal operations:  
+<ul>
+<li><tt>reduce(int identity, IntBinaryOperator op)</tt> that takes in an identity value and binary function, and performs a reduction on the stream elements using the identity value and an associative accumulation function. The reduced <tt>int</tt> value is returned </li>
+<li><tt>reduce(IntBinaryOperator op)</tt> that takes in a binary function and performs a reduction on the elements of this stream, using an associative accumulation function. An <tt>OptionalInt</tt> describing the reduced value, if any, is returned </li>
+</ul>
+</li>
+<li>As <tt>reduce</tt> is very general, you may want to change the implementation of previously defined operations so as to adhere to the <strong>abstraction principle</strong> </li>
+</ul>
+<!--
+<p>This task is divided into several levels. Read through all the levels  to see how the different levels are related. <b>You may start from any level.</b> -->   <!--
+<p>Take note of the following assumptions:  
+<ul>
+<li><b>There is no longer an upper bound for the number of customers</b>;
+<li>The format of the input is always correct;
+<li>Output of a <tt>double</tt> value, say <tt>d</tt>, is to be formatted with <tt>String.format("%.3f", d)</tt>;
+<li>Inconsistencies between sample output and actual output involving <tt>-0.000</tt> and <tt>0.000</tt> can be ignored. -->
+<p>Just remember to</p>
+<ul>
+<li>define a <tt>Main</tt> class with the <tt>main</tt> method to test the functionality.  <strong>Do not accept any user input</strong>. </li>
+<li>compile your program using
+<pre>$ javac -d . *.java
+</pre>
+<!--
+<li>check for output format correctness using the <tt>diff</tt> utility (see specific level for usage details).  Note that only <b>one</b> test case is provided for this; --> </li>
+<li>check for styling errors by invoking <tt>checkstyle</tt>. For example, to check styling for all java files
+<pre>$ checkstyle *.java
+</pre>
+</li>
+<li>leave your source files in the main directory; there is no need to create a separate submission directory </li>
+<li>submit your programs directly to CodeCrunch</li>
+</ul>
+<!-- <b> 
+<ul>
+<li>Deadline: Submit your work to CodeCrunch by Thursday, 15 September, 23:59:59. 
+</ul>
+</b> -->
