@@ -1,0 +1,5 @@
+Count of Subscription Status,Column Labels,,
+Row Labels,Churned,Not Churned,Grand Total
+Not Senior Citizen,16.02%,83.98%,100.00%
+Senior Citizen,36.82%,63.18%,100.00%
+Grand Total,19.60%,80.40%,100.00%
