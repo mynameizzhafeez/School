@@ -1,0 +1,149 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{mathabx}
+
+\begin{document}
+\section{Celestial Mechanics}
+You are the second officer of the SS Keld, a light mining frigate newly assigned to operate in the Amon star system. Amon is an F-type main sequence star with a stellar mass of $1.4m_\Sun$ and two orbiting planets: Molus and Pira, that have prograde circular orbits with a ratio of radii of $\frac{1}{4}$. Molus is a geologically active, rocky planet with a thin, acidic atmosphere and a mass of $0.5m_\Earth$. Being so close to its parent star, Molus is tidally locked to Amon. Besides the lava pools that dot its landscape, the surface is dark, with uber-resistant purple bacteria covering the day side of the planet. On the other hand, Pira is a gas giant with thick white clouds of water vapour and a semi-major axis of $1.4a_\Earth$, housing the headquarters for your operations.
+\par
+As its first mission, the SS Keld was tasked to travel from HQ to Molus, where you are put to cryosleep in case of emergencies. The SS Keld was to position itself at Molus’ L2 Lagrange point, where it would send down mining equipment to the dark side of the planet via cargo vessels. One day, you abruptly wake up from your cryosleep to find the lead engineer hysterically informing you that the ship has crashed near the substellar point of Molus. Both the captain and the first officer are KIA. You’re now in command.
+\par
+The engineer hands you the captain’s log, detailing the captain’s thoughts prior to the disaster. In his confidential notes, he suspects that one of the crew leads is actually a spy and may try to sabotage the mission. Shocked at this discovery, you grit your teeth and are determined to catch the traitor. After calling HQ for assistance and accounting for the crew members, you interview each team lead one by one.
+\par
+\textbf{Leave your answers in terms of the units provided.}
+
+\subsection{Navigation [7 marks]}
+The lead navigator is in charge of calculating course trajectories, in order to achieve a close to stable orbit at the L2 Lagrange point.
+\begin{enumerate}
+\item Pira and Molus are said to be in $a:b$ orbital resonance. Determine the value of $\frac{a}{b}$. [1 mark]
+\item Suppose the ratio of the L2 orbital distance from Molus to Molus' orbital radius is $k$. Verify the team lead's claim that $k$ is given by:
+\begin{equation}
+Gm_Am+(1+k)^2Gm_Mm=Lv\\
+\end{equation}
+where $L$, $v$ and $m$ are the angular momentum, orbital velocity and mass of the ship, while $m_A$ and $m_M$ are the masses of Amon and Molus respectively. [4 marks]
+\item For a satellite in geosynchronous orbit around Molus, determine its distance from Molus in terms of $k$ and $a_\Earth$. Justify your answer. [2 marks]
+\end{enumerate}
+
+\subsection{Engines [6 marks]}
+The lead engineer is in charge of supplying the right amount of energy to the rear thrusters during the journey. After entering a low-Pira orbit, the ship undergoes a Hohmann transfer, with a periapsis at Molus' orbit and an apoapsis at Pira's orbit. You may assume that the ship travels to Molus, instead of the L2 Lagrange point.
+\begin{enumerate}
+\item Use the ratio of radii to find the eccentricity of the transfer orbit. [1 mark]
+
+\item The vis-viva equation relates the relative velocity $v$ to the distance between the two bodies $r$ for any Keplerian orbit around a primary of mass $M$:
+\begin{equation}
+v^2=GM(\frac{2}{r}-\frac{1}{a})
+\end{equation}
+The team lead claims that the $\Delta v$ of the transfer onto the elliptical orbit is given by the following:
+\begin{equation}
+\Delta v=\sqrt{\frac{Gm_\Sun}{a_\Earth}}(\sqrt{\frac{2}{5}}-1)
+\end{equation}
+Verify the claim. [3 marks]
+\item Under Sudarsky’s Gas Giant Classification, state the likely class that Pira falls under. [1 mark]
+\end{enumerate}
+
+\subsection{Electrical [7 marks]}
+The lead electrician is responsible for supplying the ship with solar power during its operations at the L2 point.
+\begin{enumerate}
+\item Give estimates for the surface temperature and radius of Amon, in terms of $T_\Sun$ and $R_\Sun$. [1 mark]
+\item It is given that Molus would start to succumb to tidal forces if its orbit radius falls under $\frac{1}{200}$ its current value. Show that the radius of Molus $R_M$ is as such: [3 marks]
+\begin{equation}
+R_M=\frac{a_\Earth}{144}(\frac{5m_\Earth}{14m_\Sun})^{1/3}
+\end{equation}
+\item The value $k_c$ is the critical value of $k$ such that the ship at the L2 point would experience different types of stellar eclipses when $k>k_c$ and $k<k_c$. Express $k_c$ in terms of the radius of Amon $R_A$ and the radius of Molus $R_M$. [2 marks]
+\item State the type of stellar eclipse experienced when $k>k_c$. [0.5 mark]
+\item State a type of orbit that the ship could take to experience partial stellar eclipses. [0.5 mark]
+\end{enumerate}
+
+\subsection{Conclusion}
+It is discovered that the L2 point indeed lies within the antumbra of Molus, which meant that there was no use for solar power when stationed at L2. You later find out that the lead electrician indeed infiltrated the organisation and routed power away from the rear engines ever so slightly, leading to catastrophe.
+
+\section{Solution}
+
+\subsection{Navigation}
+\begin{enumerate}
+\item Using Kepler's Third Law, we can say that Molus and Pira have a period ratio of $(\frac{1}{4})^{3/2}=\frac{1}{8}$. Reversing the order, we have $\frac{a}{b}=\frac{8}{1}=8$.
+\item The phrase "send down mining equipment to the dark side of the planet" was a reminder that the L2 Lagrange point is located behind the planet. At the point, centripetal force $F_c$ is equal to the combined gravitational force due to Amon ($F_{g,A}$) and Molus ($F_{g,M}$). We can then express $F_c$ in terms of angular momentum $L$ and orbital velocity $v$ via the transformation:
+\begin{equation}
+\begin{split}
+F_c&=m\omega^2r\\
+&=\frac{(mr^2\omega)\omega}{r}\\
+&=\frac{Lv}{r^2}
+\end{split}
+\end{equation}
+We can then equate and simplify:
+\begin{equation}
+\begin{split}
+F_{g,A}+F_{g,M}&=F_c\\
+\frac{Gm_Am}{(a_M+d)^2}+\frac{Gm_Mm}{d^2}&=\frac{Lv}{(a_M+d)^2}\\
+\frac{Gm_Am}{[(1+k)d]^2}+\frac{Gm_Mm}{d^2}&=\frac{Lv}{[(1+k)d]^2}\\
+Gm_Am+(1+k)^2Gm_Mm&=Lv\\
+(1+k)^2&=\frac{Lv-Gm_Am}{Gm_Mm}\\
+k&=\sqrt{\frac{Lv}{Gm_Mm}-\frac{m_A}{m_M}}-1\\
+F_{g,A}+F_{g,M}&=F_c\\
+\frac{Gm_Am}{(a_M+d)^2}+\frac{Gm_Mm}{d^2}&=\frac{mv^2}{a_M+d}\\
+\frac{Gm_Am}{[(1+k)a_M]^2}+\frac{Gm_Mm}{k^2a_M^2}&=\frac{mv^2}{(1+k)a_M}\\
+Gm_Amk^2+Gm_Mm(1+k)^2&=a_Mk^2(1+k)
+\end{split}
+\end{equation}
+\item A satellite at the L2 Lagrange point will orbit Molus in the same amount of time Molus revolves around its parent star. Since Molus is tidally locked to its parent star, Molus makes a full rotation. In this way, a satellite at the L2 Lagrange point will be in geosynchronous orbit. Therefore, the orbit distance would be the same. We first take orbit radius to be $a_M=\frac{1}{4}(1.4a_\Earth)=0.35a_\Earth$. Then, we find the distance to be $\frac{0.35a_\Earth}{k}$.
+\end{enumerate}
+
+\subsection{Engines}
+\begin{enumerate}
+\item A ratio of radii of $\frac{1}{4}$ is defined as $\frac{a_M}{a_P}=\frac{1}{4}$. We can then use the formula for eccentricity $\epsilon$:
+\begin{equation}
+\begin{split}
+\epsilon&=\frac{a_P-a_M}{a_P+a_M}\\
+&=\frac{1-\frac{a_M}{a_P}}{1+\frac{a_M}{a_P}}\\
+&=\frac{1-\frac{1}{4}}{1+\frac{1}{4}}\\
+&=\frac{3}{5}
+\end{split}
+\end{equation}
+\item To find the $\Delta v$, we need to apply the vis-viva equation to the ship in Pira's orbit as well as the elliptical transfer orbit. The semi-major axis $a$ of the transfer orbit is as given:
+\begin{equation}
+\begin{split}
+a&=\frac{a_P+a_M}{2}\\
+&=\frac{a_P+\frac{a_P}{4}}{2}\\
+&=\frac{5}{8}a_P
+\end{split}
+\end{equation}
+Next, we shall use $r=a_P$ as that would be the ship's radial distance from the star at the point of transfer. Finding the change in $v$, we have:
+\begin{equation}
+\begin{split}
+\Delta v&=\sqrt{Gm_A(\frac{2}{a_P}-\frac{1}{a})}-\sqrt{Gm_A(\frac{2}{a_P}-\frac{1}{a_P})}\\
+&=\sqrt{Gm_A(\frac{2}{a_P}-\frac{1}{a})}-\sqrt{Gm_A(\frac{1}{a_P})}\\
+&=\sqrt{\frac{Gm_A}{a_P}}(\sqrt{2-\frac{a_P}{a}}-1)\\
+&=\sqrt{\frac{G(1.4m_\Sun)}{1.4a_\Earth}}(\sqrt{2-\frac{a_P}{\frac{5}{8}a_P}}-1)\\
+&=\sqrt{\frac{Gm_\Sun}{a_\Earth}}(\sqrt{\frac{2}{5}}-1)
+\end{split}
+\end{equation}
+\item The bi-elliptic transfer.
+\end{enumerate}
+
+\subsection{Electrical}
+\begin{enumerate}
+\item For an F-type main sequence star, we have $1.038T_\Sun<T<1.298T_\Sun$ and $1.15R_\Sun<R<1.4R_\Sun$.
+\item Since Molus will start to succumb to tidal forces under $\frac{1}{200}$ its orbit radius, the Roche Limit $d$ is $\frac{1}{200}$ of its current orbit radius $0.35a_\Earth$ (i.e. $d=\frac{0.35}{200}a_\Earth$). We can manipulate the parameters for the calculation of Roche Limit $d$ for the diameter $R_M$ of Molus as such:
+\begin{equation}
+\begin{split}
+d&=1.26R_A(\frac{\rho_A}{\rho_M})^{1/3}\\
+d&=1.26R_A(\frac{R_M^3m_A}{R_A^3m_M})^{1/3}\\
+d&=1.26R_M(\frac{m_A}{m_M})^{1/3}\\
+R_M&=\frac{\frac{0.35}{200}a_\Earth}{1.26}(\frac{0.5m_\Earth}{1.4m_\Sun})^{1/3}\\
+R_M&=\frac{a_\Earth}{720}(\frac{5m_\Earth}{14m_\Sun})^{1/3}\\
+\end{split}
+\end{equation}
+\item At $k=k_c$, the angular sizes of Amon and Molus are exactly the same. As such, we can use similar triangles to equate the ratios of radius $R$ to distance $a$ from the ship. With a distance of $(1+\frac{1}{k})a_M$ for Amon and $\frac{a_M}{k}$ for Molus, we have the following:
+\begin{equation}
+\begin{split}
+\frac{R_A}{(1+\frac{1}{k})a_M}&=\frac{R_M}{\frac{a_M}{k}}\\
+\frac{kR_A}{(k+1)a_M}&=\frac{kR_M}{a_M}\\
+\frac{R_A}{R_M}&=k+1\\
+k&=\frac{R_A}{R_M}-1
+\end{split}
+\end{equation}
+\item As $k$ increases past the critical point, the ratio of Molus' orbital radius to the L2 orbital distance from Molus increases. As such, we end up closer to Molus, giving a total stellar eclipse.
+\item The ship could take a Lissajous or Halo orbit.
+\end{enumerate}
+\end{document}
