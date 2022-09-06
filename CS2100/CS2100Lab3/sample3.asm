@@ -9,5 +9,8 @@ main:  li $v0, 4
                           # change $t0 to ASCII value of 'O'
                           # store $t0 into the memory location of 'o'
                           # perform another syscall
+       lb $t0, 4($a0)
+       addi $t0, $t0, -32
        li $v0, 10
+       sb $t0, 4($a0)
        syscall
