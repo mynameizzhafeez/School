@@ -1,0 +1,9 @@
+[Projects](pid*, startedOn);
+[Departments](did*, dname);
+[Employees](eid*, ename);
+[<Sponsors>](since);
+Projects === Sponsors;
+Departments --- Sponsors;
+<Monitors>(until);
+Employees --- Monitors;
+Sponsors --- Monitors;

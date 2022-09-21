@@ -1,0 +1,4 @@
+[Students](sid*, name, dob);
+<Mentors>();
+Students --- Mentors [senior];
+Students --- Mentors [junior];

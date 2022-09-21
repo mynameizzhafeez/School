@@ -1,0 +1,5 @@
+[Students](sid*, name, dob);
+[Courses](cid*, cname, credits);
+<Enrolls>(grade);
+Students === Enrolls;
+Courses --- Enrolls;

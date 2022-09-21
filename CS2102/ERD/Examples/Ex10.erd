@@ -1,0 +1,8 @@
+[Students](sid*, name);
+[Ugrads](satScore);
+[Grads](bachelorDegree);
+[Offices](rid*,phone,location);
+<Works>();
+Grads --- Works;
+Offices --- Works;
+Students ==> {Ugrads, Grads};

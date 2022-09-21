@@ -1,0 +1,5 @@
+[Books](isbn*, title, author);
+[[Chapters]](number*, title);
+<<Contains>>();
+Books --- Contains;
+Chapters ==> Contains;

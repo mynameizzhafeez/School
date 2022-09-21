@@ -1,0 +1,5 @@
+[Profs](pid*, name, room);
+[Students](sid*, name, dob);
+<Supervises>(since);
+Profs --- Supervises;
+Students --> Supervises;
