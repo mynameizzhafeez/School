@@ -1,0 +1,15 @@
+CREATE VIEW p2e (a1, a2, b1, b2, b3) AS
+SELECT a1, a2, b1, b2, b3 FROM
+(SELECT value AS a1, row AS t1row FROM simulator WHERE tname='t1' AND col='a1') c1
+JOIN
+(SELECT value AS b2, row AS t2row FROM simulator WHERE tname='t2' AND col='b2') c2
+ON c1.a1 = c2.b2
+JOIN
+(SELECT value AS a2, row FROM simulator WHERE tname='t1' AND col='a2') c3
+ON t1row = c3.row
+JOIN
+(SELECT value AS b1, row FROM simulator WHERE tname='t2' AND col='b1') c4
+ON t2row = c4.row
+JOIN
+(SELECT value AS b3, row FROM simulator WHERE tname='t2' AND col='b3') c5
+ON t2row = c5.row;

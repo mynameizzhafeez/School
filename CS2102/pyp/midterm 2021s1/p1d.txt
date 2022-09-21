@@ -1,0 +1,6 @@
+CREATE VIEW p2d (a1, a2) AS
+SELECT a1, a2 FROM
+(SELECT value AS a1, row FROM simulator WHERE tname='t1' AND col='a1' AND value > '25') c1
+JOIN 
+(SELECT value AS a2, row FROM simulator WHERE tname='t1' AND col='a2') c2
+ON c1.row = c2.row;

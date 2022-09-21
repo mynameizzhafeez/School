@@ -1,0 +1,15 @@
+CREATE VIEW p2g (a0) AS
+WITH simulator AS
+(SELECT tname, col, rowx, value FROM
+(SELECT value AS tname, row FROM simulator2 WHERE tname='simulator' AND col='tname') c1
+JOIN
+(SELECT value AS col, row FROM simulator2 WHERE tname='simulator' AND col='col') c2
+ON c1.row = c2.row
+JOIN
+(SELECT value AS rowx, row FROM simulator2 WHERE tname='simulator' AND col='row') c3
+ON c2.row = c3.row
+JOIN
+(SELECT value, row FROM simulator2 WHERE tname='simulator' AND col='value') c4
+ON c3.row = c4.row)
+
+SELECT value AS a0 FROM simulator WHERE tname='t0' AND col='a0' AND value > '1010';
