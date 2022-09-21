@@ -1,0 +1,93 @@
+
+CREATE TABLE areas (
+ name TEXT PRIMARY KEY,
+ area_size NUMERIC CHECK (area_size >= 0),
+ population INTEGER CHECK (population >= 0),
+ region TEXT NOT NULL
+);
+
+
+
+CREATE TABLE subzones (
+ name TEXT PRIMARY KEY,
+ area_size NUMERIC CHECK (area_size >= 0),
+ population INTEGER CHECK (population >= 0),
+ area TEXT NOT NULL,
+ FOREIGN KEY (area) REFERENCES areas (name)
+);
+
+
+
+CREATE TABLE hdb_blocks (
+ id INTEGER PRIMARY KEY,
+ number TEXT NOT NULL,
+ street TEXT NOT NULL,
+ postal_code INTEGER NOT NULL CHECK (postal_code > 0),
+ completed INTEGER NOT NULL,
+ max_floor INTEGER NOT NULL CHECK (max_floor >= 0), 
+ lat NUMERIC NOT NULL,
+ lng NUMERIC NOT NULL,
+ subzone TEXT NOT NULL, 
+ FOREIGN KEY (subzone) REFERENCES subzones (name)
+);
+
+
+
+CREATE TABLE hdb_has_units (
+ block_id INTEGER NOT NULL,
+ unit_type TEXT NOT NULL,
+ unit_count INTEGER NOT NULL CHECK (unit_count >= 0),
+ PRIMARY KEY (block_id, unit_type),
+ FOREIGN KEY (block_id) REFERENCES hdb_blocks (id)
+);
+
+
+
+CREATE TABLE mrt_data (
+ code CHAR(4) PRIMARY KEY,
+ line CHAR(2) NOT NULL,
+ name TEXT NOT NULL,
+ opened INTEGER NOT NULL CHECK (opened >= 0),
+ subzone TEXT NOT NULL,
+ lat NUMERIC NOT NULL,
+ lng NUMERIC NOT NULL,
+ FOREIGN KEY (subzone) REFERENCES subzones (name)
+); 
+
+
+
+CREATE TABLE mrt_stations (
+ name TEXT PRIMARY KEY,
+ lat NUMERIC NOT NULL,
+ lng NUMERIC NOT NULL,
+ subzone TEXT NOT NULL,
+ FOREIGN KEY (subzone) REFERENCES subzones (name)
+); 
+
+
+
+CREATE TABLE mrt_stops (
+ code CHAR(4) PRIMARY KEY,
+ line CHAR(2) NOT NULL,
+ opened INTEGER NOT NULL CHECK (opened >= 0),
+ station TEXT NOT NULL,
+ FOREIGN KEY (station) REFERENCES mrt_stations (name)
+); 
+
+
+
+CREATE TABLE mrt_connections (
+ from_code CHAR(4),
+ to_code CHAR(4),
+ PRIMARY KEY (from_code, to_code),
+ FOREIGN KEY (from_code) REFERENCES mrt_stops (code),
+ FOREIGN KEY (to_code) REFERENCES mrt_stops (code) 
+);
+
+
+
+CREATE TABLE hdb_unit_types (
+ id CHAR(10) PRIMARY KEY,
+ description TEXT NOT NULL
+);
+

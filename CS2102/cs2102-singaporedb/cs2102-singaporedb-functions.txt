@@ -1,0 +1,26 @@
+DROP FUNCTION geodistance;
+CREATE OR REPLACE FUNCTION geodistance(lat1 NUMERIC, lng1 NUMERIC, lat2 NUMERIC, lng2 NUMERIC)
+RETURNS NUMERIC
+LANGUAGE plpgsql 
+AS
+$$
+DECLARE
+	distance NUMERIC;
+	a NUMERIC;
+BEGIN
+	
+	distance := ATAN2(
+	    SQRT(
+		POW(COS(RADIANS(lat2)) * SIN(RADIANS(lng1 - lng2)), 2) + 
+		POW(COS(RADIANS(lat1)) * SIN(RADIANS(lat2)) - SIN(RADIANS(lat1)) * COS(RADIANS(lat2)) * COS(RADIANS(lng1 - lng2)), 2)
+	    ),
+	    (
+		SIN(RADIANS(lat1)) * SIN(RADIANS(lat2)) + COS(RADIANS(lat1)) * COS(RADIANS(lat2)) * COS(RADIANS(lng1 - lng2))
+	    )
+	) * 6372.795;
+	
+	RETURN distance;
+END;
+$$
+;
+
