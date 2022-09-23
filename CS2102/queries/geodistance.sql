@@ -1,0 +1,24 @@
+-- FINDS ALL hdb blocks that are < 1km away from their mrt station
+-- SELECT name, street, d
+-- FROM (
+-- 	SELECT p1.name, p2.street, geodistance(p1.lat, p1.lng, p2.lat, p2.lng) AS d
+-- 	FROM
+-- 		(SELECT * FROM mrt_stations) AS p1,
+-- 		(SELECT * FROM hdb_blocks) AS p2
+-- 	WHERE p1.subzone = p2.subzone
+-- ) t1
+-- WHERE d < 1
+-- ORDER BY d ASC;
+
+-- FINDS THE DISTANCE BETWEEN CONSECUTIVE STATIONS
+-- SELECT * FROM (
+-- 	SELECT DISTINCT s1.station, s2.station, geodistance(t1.lat, t1.lng, t2.lat, t2.lng) AS d
+-- 		FROM mrt_connections c
+-- 		JOIN mrt_stops s1 ON c.from_code=s1.code
+-- 		JOIN mrt_stops s2 ON c.to_code=s2.code
+-- 		JOIN mrt_stations t1 ON s1.station=t1.name
+-- 		JOIN mrt_stations t2 ON s2.station=t2.name
+-- 		WHERE s1.station < s2.station
+-- ) t
+-- ORDER BY d DESC;
+
